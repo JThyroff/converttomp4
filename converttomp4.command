@@ -1,9 +1,9 @@
 #! /bin/bash
 convHome=$(pwd)
 original="original"
-rootfolder="/Users/Shared/Footage"
+rootfolder="/Users/Shared/Footage/Videokassetten Franzi Kindheit"
 
-if false
+if true
 then
 	echo "Clearing original folder ..."
 
@@ -20,8 +20,6 @@ cd "$convHome"
 
 echo "Starting conversion in "$(pwd)" ..."
 
-exit 1
+find ./ -type f \( -iname \*.VOB -o -iname \*.MOD \) -exec ./ffmpeg -i {} -vf yadif=parity=auto {}.mp4 \;
 
-For i in (find ./ -type f \( -iname \*.VOB -o -iname \*.MOD \));
-	do ffmpeg -i "$i" -vf yadif=parity=auto "$i".mp4
-Done
+exit 0
