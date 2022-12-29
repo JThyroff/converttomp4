@@ -1,7 +1,8 @@
 #! /bin/bash
+
 convHome=$(pwd)
 original="original"
-rootfolder="/Users/Shared/Footage/Videokassetten Franzi Kindheit"
+rootfolder="/Users/Shared/Footage/"
 
 if true
 then
@@ -18,8 +19,17 @@ fi
 
 cd "$convHome"
 
-echo "Starting conversion in "$(pwd)" ..."
+if true
+then
+	echo "Starting conversion in "$(pwd)" ..."
 
-find ./ -type f \( -iname \*.VOB -o -iname \*.MOD \) -exec ./ffmpeg -i {} -vf yadif=parity=auto {}.mp4 \;
+	find ./ -type f \( -iname \*.VOB -o -iname \*.MOD \) -exec ./ffmpeg -i {} -vf yadif=parity=auto {}.mp4 \;
+fi
+
+echo "Deleting copied files ..."
+
+find ./ -type f \( -iname \*.VOB -o -iname \*.MOD \) -delete -print
+
+echo "done."
 
 exit 0
